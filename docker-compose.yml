@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+      # - "40000:40000"
+    mem_limit: 2g
+    # volumes:
+    #   - .:/menusplanningapp
+    # command: ["dlv", "debug", "--headless", "--listen=:40000", "--api-version=2", "--accept-multiclient", "./cmd/api"]
+
+  db:
+    image: postgres:alpine
+    env_file: .env
+    environment:
+      - POSTGRES_DB=menusplanningapp_db
+      - POSTGRES_USER=menusplanningapp_user
+      - POSTGRES_PASSWORD=menusplanningapp_pass
+    ports:
+      - "5432:5432"
+    restart: always
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "menusplanningapp_user", "-d", "menusplanningapp_db"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
