@@ -35,6 +35,10 @@ func (c *PlanningController) CreatePlanning(w http.ResponseWriter, r *http.Reque
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+	if !planning.Slot.IsValid() {
+		http.Error(w, "Given slot isn't correct", http.StatusBadRequest)
+		return
+	}
 	createdPlanning, err := c.service.Create(&planning)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -53,7 +57,11 @@ func (c *PlanningController) GetPlanning(w http.ResponseWriter, r *http.Request)
 	}
 	planning, err := c.service.FindByID(id)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusNotFound)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if planning == nil {
+		http.Error(w, "Planning not found", http.StatusNotFound)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")
@@ -65,6 +73,15 @@ func (c *PlanningController) UpdatePlanning(w http.ResponseWriter, r *http.Reque
 	var planning model.Planning
 	if err := json.NewDecoder(r.Body).Decode(&planning); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	existing, err := c.service.FindByID(planning.ID)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if existing == nil {
+		http.Error(w, "Planning not found", http.StatusNotFound)
 		return
 	}
 	updatedPlanning, err := c.service.Update(&planning)
