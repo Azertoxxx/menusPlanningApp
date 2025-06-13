@@ -59,11 +59,11 @@ async function handleDeleteConfirmed(id: string | null) {
 
 <template>
   <v-card class="mx-auto" max-width="500">
-    <v-card-title>Liste des recettes</v-card-title>
+    <v-card-title>List of recipes</v-card-title>
 
     <v-text-field
       v-model="searchQuery"
-      label="Rechercher un plat"
+      label="Search a dish"
       variant="outlined"
       density="compact"
       class="mx-4 my-2"

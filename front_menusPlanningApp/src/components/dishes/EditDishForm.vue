@@ -66,7 +66,7 @@
           <v-form @submit.prevent="submitForm">
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="form.name" label="Nom du plat" required />
+                <v-text-field v-model="form.name" label="Dish name" required />
               </v-col>
             </v-row>
 
@@ -78,14 +78,14 @@
 
             <v-row>
               <v-col cols="12">
-                <v-textarea v-model="form.ingredients" label="Ingrédients" required />
+                <v-textarea v-model="form.ingredients" label="Ingredients" required />
               </v-col>
             </v-row>
 
             <v-row>
               <v-col cols="12">
                 <v-file-input
-                  label="Image du plat"
+                  label="Dish Image"
                   accept="image/*"
                   :multiple="false"
                   v-model="imageFile"

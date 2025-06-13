@@ -29,11 +29,11 @@ const submitDelete = () => {
 <template>
   <v-dialog v-model="localShow" max-width="600" @update:modelValue="emit('update:show', $event)">
     <v-card>
-      <v-card-title>Confirmation de suppression</v-card-title>
-      <v-card-text>Êtes-vous sûr de vouloir supprimer ce plat ?</v-card-text>
+      <v-card-title>Delete confirmation </v-card-title>
+      <v-card-text>Are you sure to delete this dish ?</v-card-text>
       <v-card-actions>
-        <v-btn text @click="closeDialog">Annuler</v-btn>
-        <v-btn color="red" @click="submitDelete">Supprimer</v-btn>
+        <v-btn text @click="closeDialog">Cancel</v-btn>
+        <v-btn color="red" @click="submitDelete">Delete</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

@@ -77,6 +77,30 @@ const assignDishToSlot = async () => {
     closeDialog();
   }
 };
+
+const shoppingListVisible = ref(false);
+const shoppingList = ref<string[]>([]);
+
+const generateShoppingList = () => {
+  const dishIdsInPlanning = new Set(
+    planningsStore.planningList.map((p) => p.dish?.id).filter(Boolean)
+  );
+
+  const selectedDishes = dishesStore.dishList.filter((d) =>
+    dishIdsInPlanning.has(d.id)
+  );
+
+  const list: string[] = [];
+
+  selectedDishes.forEach((dish) => {
+    list.push(`🍽️ ${dish.name}`);
+    list.push(` ${dish.ingredients}`);
+    list.push("");
+  });
+
+  shoppingList.value = list;
+  shoppingListVisible.value = true;
+};
 </script>
 
 <template>
@@ -106,10 +130,17 @@ const assignDishToSlot = async () => {
     />
   </div>
   <div>
-    <v-btn color="success" type="submit">Générer la liste des courses</v-btn>
+    <v-btn color="success" type="button" @click="generateShoppingList">
+      Generate Shopping List
+    </v-btn>
+  </div>
+
+  <div v-if="shoppingListVisible" class="shopping-list">
+    <h3>🛒 Shopping List</h3>
+    <pre>{{ shoppingList.join('\n') }}</pre>
   </div>
   <div>
-    <v-btn color="success" type="submit">Envoyer planning par sms ou mail</v-btn>
+    <v-btn color="success" type="submit">Send shopping list by email or SMS</v-btn>
   </div>
 </template>
 
@@ -147,5 +178,13 @@ const assignDishToSlot = async () => {
 .slot-button:hover {
   background-color: #e0e0e0;
 }
-</style>
 
+.shopping-list {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+</style>

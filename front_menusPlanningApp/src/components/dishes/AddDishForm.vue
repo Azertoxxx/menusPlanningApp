@@ -60,7 +60,7 @@ const submitForm = async () => {
       <v-col cols="12">
         <v-textarea
           v-model="form.ingredients"
-          label="Ingrédients"
+          label="Ingredients"
           required
         />
       </v-col>
@@ -69,7 +69,7 @@ const submitForm = async () => {
     <v-row>
       <v-col cols="12">
         <v-file-input
-          label="Image du plat"
+          label="Dish Image"
           accept="image/*"
           :multiple="false"
           v-model="imageFile"

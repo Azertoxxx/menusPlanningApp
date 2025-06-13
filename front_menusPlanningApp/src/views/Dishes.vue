@@ -14,14 +14,14 @@ const onDishSubmitted = () => {
   <h3>Plats</h3>
   <v-btn @click="showViewDialog = true">
     <v-icon start>mdi-plus</v-icon>
-    Ajouter un plat
+    Add a dish
   </v-btn>
 
   <DishesScroll />
 
   <v-dialog v-model="showViewDialog" max-width="500px">
     <v-card>
-      <v-card-title>Ajouter un plat</v-card-title>
+      <v-card-title>Add a dish</v-card-title>
       <v-card-text>
         <AddDishForm @submitted="onDishSubmitted" />
       </v-card-text>
