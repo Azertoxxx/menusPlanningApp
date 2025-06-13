@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug local",
+        "type": "go",
+        "request": "launch",
+        "mode": "auto",
+        "program": "${workspaceFolder}/cmd/api",
+        "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "DB_HOST": "localhost",
+        "DB_PORT": "5432",
+        "DB_USER": "menusplanningapp_user",
+        "DB_PASS": "menusplanningapp_pass",
+        "DB_NAME": "menusplanningapp_db",
+        "SERVER_PORT": "8080"
+      }
+      },
+      
+      {
+        "name": "Attach to Docker Go App",
+        "type": "go",
+        "request": "attach",
+        "mode": "remote",
+        "remotePath": "/menusplanningapp",
+        "port": 40000,
+        "host": "localhost"
+      }
+    ]
+  }
+  

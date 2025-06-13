@@ -1,0 +1,24 @@
+import type { Dish } from "./dish.model";
+
+export interface Planning {
+    id?: string;
+    slot: string;
+    dish?: Dish
+}
+
+export enum PlanningSlot {
+    MONDAY_LUNCH = "MONDAY_LUNCH",
+    MONDAY_DINNER = "MONDAY_DINNER",
+    TUESDAY_LUNCH = "TUESDAY_LUNCH",
+    TUESDAY_DINNER = "TUESDAY_DINNER",
+    WEDNESDAY_LUNCH = "WEDNESDAY_LUNCH",
+    WEDNESDAY_DINNER = "WEDNESDAY_DINNER",
+    THURSDAY_LUNCH = "THURSDAY_LUNCH",
+    THURSDAY_DINNER = "THURSDAY_DINNER",
+    FRIDAY_LUNCH = "FRIDAY_LUNCH",
+    FRIDAY_DINNER = "FRIDAY_DINNER",
+    SATURDAY_LUNCH = "SATURDAY_LUNCH",
+    SATURDAY_DINNER = "SATURDAY_DINNER",
+    SUNDAY_LUNCH = "SUNDAY_LUNCH",
+    SUNDAY_DINNER = "SUNDAY_DINNER",
+}

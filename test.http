@@ -1,0 +1,63 @@
+GET http://localhost:8080/dishes
+content-type: application/json
+
+###
+
+POST http://localhost:8080/dishes
+content-type: application/json
+
+{
+  "name": "plat"
+}
+
+###
+DELETE http://localhost:8080/dishes/2f23e594-f317-4d99-8884-afe8ddb6e029
+content-type: application/json
+
+
+###
+GET http://localhost:8080/dishes?limit=2&offset=0&sortBy=name&name=test
+content-type: application/json
+
+
+###
+GET http://localhost:8080/dishes/001f6c2d-c36d-48de-8ba0-1f966cc7ad14
+content-type: application/json
+
+###
+PUT http://localhost:8080/dishes/001f6c2d-c36d-48de-8ba0-1f966cc7ad14
+content-type: application/json
+
+{
+  "id": "001f6c2d-c36d-48de-8ba0-1f966cc7ad14",
+  "name": "a2",
+  "imageUrl": "",
+  "ingredients": "a",
+  "description": "a",
+  "createdAt": "2025-05-11T17:11:11.817454Z",
+  "updatedAt": "2025-05-11T17:11:11.817454Z",
+  "deletedAt": null
+}
+
+
+
+
+
+
+
+###
+
+GET http://localhost:8080/plannings
+content-type: application/json
+
+
+###
+
+POST http://localhost:8080/plannings
+content-type: application/json
+
+{
+  "slot": "MONDAY_DINNER",
+  "dishId": "15b2b184-93c4-4519-b802-9505031e22ae"
+}
+
